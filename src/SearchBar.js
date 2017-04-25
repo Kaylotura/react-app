@@ -1,7 +1,7 @@
 /**
  * Created by kaylo on 4/19/2017.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class SearchBar extends Component {
@@ -27,4 +27,9 @@ export default class SearchBar extends Component {
       </form>
     )
   }
+}
+
+SearchBar.propTypes = {
+  handleSearchString: PropTypes.func,
+  handleFilterStockedToggle: PropTypes.func
 }

@@ -1,12 +1,12 @@
 /**
  * Created by kaylo on 4/19/2017.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TableBody from './TableBody'
 
 export default class StockTable extends Component {
-  render() {
+  render () {
     return (
       <table>
         <thead>
@@ -25,4 +25,12 @@ export default class StockTable extends Component {
       </table>
     )
   }
+}
+
+StockTable.propTypes = {
+  inventory: PropTypes.object,
+  filterStocked: PropTypes.bool,
+  searchString: PropTypes.string,
+  priceTotal: PropTypes.number,
+  updateInCart: PropTypes.func
 }

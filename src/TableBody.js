@@ -1,7 +1,7 @@
 /**
  * Created by kaylo on 4/19/2017.
  */
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class TableBody extends Component {
@@ -43,7 +43,7 @@ export default class TableBody extends Component {
 
           tableBody.push(
             <tr key={inventoryItem.name}>
-              <td style={{color: styleColor }}>
+              <td style={{ color: styleColor }}>
                 <input
                   id={inventoryId}
                   type='checkbox'
@@ -53,7 +53,7 @@ export default class TableBody extends Component {
                                     />
                 {inventoryItem.name}
               </td>
-              <td style={{color: styleColor }}>${inventoryItem.price}</td>
+              <td style={{ color: styleColor }}>${inventoryItem.price}</td>
             </tr>
                     )
         }
@@ -69,4 +69,11 @@ export default class TableBody extends Component {
       </tbody>
     )
   }
+}
+TableBody.propTypes = {
+  inventory: PropTypes.object,
+  filterStocked: PropTypes.bool,
+  searchString: PropTypes.string,
+  priceTotal: PropTypes.number,
+  updateInCart: PropTypes.func
 }

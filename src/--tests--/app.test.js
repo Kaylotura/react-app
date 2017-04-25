@@ -4,7 +4,7 @@ import App from '../App'
 // import { shallow, mount, render } from 'enzyme'
 import { shallow } from 'enzyme'
 
-/* global it describe shalllow expect beforeEach */
+/* global it describe expect beforeEach */
 
 describe('App', () => {
   let app, wrapper
