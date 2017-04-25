@@ -42,13 +42,21 @@
     "jest": "15.1.1",
     "jest-cli": "15.1.1",
     "react": "^0.14.7",
-    "react-addons-test-utils": "^0.14.7"
+    "react-addons-test-utils": "^0.14.7",
+    "yarn": "^0.22.0"
   },
   "dependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-node": "^4.2.2",
+    "prop-types": "^15.5.8",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-scripts": "^0.9.5"
   },
-  "babel": { "presets": [ "react", "es2015"]
+  "babel": {
+    "presets": [
+      "react",
+      "es2015"
+    ]
   }
 }
