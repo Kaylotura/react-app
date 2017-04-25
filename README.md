@@ -1,2 +1,2 @@
-# PDX Codeguild Portfolio
-This repository is filled with practices and exercises from PDX Codeguild's Full Stack Accelerated Learning Program. Demonstrating proficiency in python, javascript, jquery, html, css, ajax, and django.
+# React-App
+Just playing around with a react app.
