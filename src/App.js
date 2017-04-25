@@ -3,6 +3,7 @@ import SearchBar from './SearchBar'
 import StockTable from './StockTable'
 import JSONInventory from './JSONInventory'
 
+// Nothing
 
 class App extends Component {
     constructor() {
