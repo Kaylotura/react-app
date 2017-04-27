@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchBar from './SearchBar'
 import StockTable from './StockTable'
 import JSONInventory from './JSONInventory'
+import {Jumbotron} from 'react-bootstrap'
 
 class App extends Component {
   constructor () {
@@ -39,6 +40,10 @@ class App extends Component {
   render () {
     return (
       <div>
+        <Jumbotron>
+          <h1>Capitalist World</h1>
+          <p>You can check out any time you like, but you can never leave!</p>
+        </Jumbotron>
         <SearchBar
           filterStocked={this.state.filterStocked}
           handleFilterStockedToggle={this.toggleFilterStocked}

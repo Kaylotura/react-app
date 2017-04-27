@@ -4,11 +4,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TableBody from './TableBody'
+import {Table} from 'react-bootstrap'
 
 export default class StockTable extends Component {
   render () {
     return (
-      <table>
+      <Table bordered condensed hover>
         <thead>
           <tr>
             <td><strong>Name</strong></td>
@@ -22,7 +23,7 @@ export default class StockTable extends Component {
           priceTotal={this.props.priceTotal}
           updateInCart={this.props.updateInCart}
         />
-      </table>
+      </Table>
     )
   }
 }
