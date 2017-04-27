@@ -12,6 +12,7 @@ export default class StockTable extends Component {
       <Table bordered condensed hover>
         <thead>
           <tr>
+            <td><strong>Select</strong></td>
             <td><strong>Name</strong></td>
             <td>Price</td>
           </tr>

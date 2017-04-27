@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {ButtonToolbar, Button} from 'react-bootstrap'
 
 export default class TableBody extends Component {
   constructor () {
@@ -42,15 +43,22 @@ export default class TableBody extends Component {
           }
 
           tableBody.push(
+
             <tr key={inventoryItem.name}>
+              <td>
+                <ButtonToolbar>
+                    <Button
+                      id={inventoryId}
+                      bsStyle='primary'
+                      onClick={
+                        (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
+                      }
+                    >
+                    Select
+                  </Button>
+                </ButtonToolbar>
+              </td>
               <td style={{ color: styleColor }}>
-                <input
-                  id={inventoryId}
-                  type='checkbox'
-                  onChange={
-                                            (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
-                                        }
-                                    />
                 {inventoryItem.name}
               </td>
               <td style={{ color: styleColor }}>${inventoryItem.price}</td>
@@ -64,6 +72,7 @@ export default class TableBody extends Component {
         {tableBody}
         <tr>
           <td><strong>Total</strong></td>
+          <td></td>
           <td id='priceTotal'><strong>${this.props.priceTotal}</strong></td>
         </tr>
       </tbody>
