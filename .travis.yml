@@ -5,3 +5,6 @@ node_js:
 cache: yarn
 scripts: {
   "test": "yarn test"
+}
+notifications:
+  email: false
