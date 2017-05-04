@@ -8,13 +8,13 @@ import {FormControl, FormGroup, Checkbox} from 'react-bootstrap'
 export default class SearchBar extends Component {
   render () {
     return (
-    <FormGroup>
-      <FormControl
-            type='text'
-            id='searchStringBox'
-            placeholder='Search...'
-            onChange={(event) => this.props.handleSearchString(event.target.value)}
-            />
+      <FormGroup>
+        <FormControl
+          type='text'
+          id='searchStringBox'
+          placeholder='Search...'
+          onChange={(event) => this.props.handleSearchString(event.target.value)}
+          />
         <Checkbox
           id='filterStockedCheckBox'
           type='checkbox'
@@ -22,7 +22,7 @@ export default class SearchBar extends Component {
               >
           "Only show products in stock"
           </Checkbox>
-    </FormGroup>
+      </FormGroup>
     )
   }
 }
