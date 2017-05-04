@@ -3,6 +3,7 @@ import SearchBar from './SearchBar'
 import StockTable from './StockTable'
 import JSONInventory from './JSONInventory'
 import {Jumbotron} from 'react-bootstrap'
+import Jumbotron from 'react-bootstrap/es/Jumbotron'
 
 class App extends Component {
   constructor () {
