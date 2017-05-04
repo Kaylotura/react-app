@@ -23,6 +23,7 @@ export default class StockTable extends Component {
           searchString={this.props.searchString}
           priceTotal={this.props.priceTotal}
           updateInCart={this.props.updateInCart}
+          inCart={this.props.inCart}
         />
       </Table>
     )
@@ -34,5 +35,6 @@ StockTable.propTypes = {
   filterStocked: PropTypes.bool,
   searchString: PropTypes.string,
   priceTotal: PropTypes.number,
-  updateInCart: PropTypes.func
+  updateInCart: PropTypes.func,
+  inCart: PropTypes.array
 }

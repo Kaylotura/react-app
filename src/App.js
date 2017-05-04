@@ -56,6 +56,7 @@ class App extends Component {
           searchString={this.state.searchString}
           priceTotal={this.state.priceTotal}
           updateInCart={this.updateInCart}
+          inCart={this.state.inCart}
             />
       </div>
     )

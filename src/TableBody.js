@@ -39,11 +39,17 @@ export default class TableBody extends Component {
           let inventoryId = (inventoryItem.name).replace(/\s+/g, '-').toLowerCase()
           let styleColor = 'black'
           let disabledState = false
+          let buttonStyle = 'primary'
+          let buttonText = 'Select'
           if (inventoryItem.stocked) {
             styleColor = 'black'
           } else if (!this.props.filterStocked) {
             styleColor = 'red'
             disabledState = true
+          }
+          if (this.props.inCart.indexOf(inventoryItem.name) !== -1) {
+            buttonStyle = 'warning'
+            buttonText = 'Unselect'
           }
           tableBody.push(
             <tr key={inventoryItem.name}>
@@ -51,13 +57,13 @@ export default class TableBody extends Component {
                 <ButtonToolbar>
                   <Button
                     id={inventoryId}
-                    bsStyle='primary'
+                    bsStyle={buttonStyle}
                     onClick={
                       (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
                     }
                     disabled={disabledState}
                   >
-                    Select
+                    {buttonText}
                   </Button>
                 </ButtonToolbar>
               </td>
@@ -66,7 +72,7 @@ export default class TableBody extends Component {
               </td>
               <td style={{ color: styleColor }}>${inventoryItem.price}</td>
             </tr>
-                    )
+          )
         }
       })
     }
@@ -75,8 +81,7 @@ export default class TableBody extends Component {
         {tableBody}
         <tr>
           <td><strong>Total</strong></td>
-          <td></td>
-          <td id='priceTotal'><strong>${this.props.priceTotal}</strong></td>
+          <td span='2' id='priceTotal'><strong>${this.props.priceTotal}</strong></td>
         </tr>
       </tbody>
     )
@@ -87,5 +92,6 @@ TableBody.propTypes = {
   filterStocked: PropTypes.bool,
   searchString: PropTypes.string,
   priceTotal: PropTypes.number,
-  updateInCart: PropTypes.func
+  updateInCart: PropTypes.func,
+  inCart: PropTypes.array
 }
