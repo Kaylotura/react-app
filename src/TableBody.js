@@ -17,10 +17,12 @@ export default class TableBody extends Component {
     let categoryList = []
     let tableBody = []
     let filteredInventory = this.props.inventory.filter((inventoryItem) => {
-      if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase()) && !this.props.filterStocked) {
-        return inventoryItem
-      } else if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase()) && this.props.filterStocked && inventoryItem.stocked) {
-        return inventoryItem
+      if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase())) {
+        if (!this.props.filterStocked) {
+          return inventoryItem
+        } else if (inventoryItem.stocked) {
+          return inventoryItem
+        }
       }
     })
     filteredInventory.forEach((inventoryItem) => {
@@ -36,24 +38,25 @@ export default class TableBody extends Component {
         if (categoryList.indexOf(inventoryItem.category) === i) {
           let inventoryId = (inventoryItem.name).replace(/\s+/g, '-').toLowerCase()
           let styleColor = 'black'
+          let disabledState = false
           if (inventoryItem.stocked) {
             styleColor = 'black'
           } else if (!this.props.filterStocked) {
             styleColor = 'red'
+            disabledState = true
           }
-
           tableBody.push(
-
             <tr key={inventoryItem.name}>
               <td>
                 <ButtonToolbar>
-                    <Button
-                      id={inventoryId}
-                      bsStyle='primary'
-                      onClick={
-                        (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
-                      }
-                    >
+                  <Button
+                    id={inventoryId}
+                    bsStyle='primary'
+                    onClick={
+                      (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
+                    }
+                    disabled={disabledState}
+                  >
                     Select
                   </Button>
                 </ButtonToolbar>
