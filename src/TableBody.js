@@ -1,25 +1,18 @@
-/**
- * Created by kaylo on 4/19/2017.
- */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {ButtonToolbar, Button} from 'react-bootstrap'
 
 export default class TableBody extends Component {
-  constructor () {
-    super()
-    this.state = {
-      rowCheckBoxIs: {}
-    }
-  }
-
   render () {
     let categoryList = []
     let tableBody = []
     let filteredInventory = this.props.inventory.filter((inventoryItem) => {
-      if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase()) && !this.props.filterStocked) {
-        return inventoryItem
-      } else if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase()) && this.props.filterStocked && inventoryItem.stocked) {
-        return inventoryItem
+      if (inventoryItem.name.toLowerCase().includes(this.props.searchString.toLowerCase())) {
+        if (!this.props.filterStocked) {
+          return inventoryItem
+        } else if (inventoryItem.stocked) {
+          return inventoryItem
+        }
       }
     })
     filteredInventory.forEach((inventoryItem) => {
@@ -35,27 +28,41 @@ export default class TableBody extends Component {
         if (categoryList.indexOf(inventoryItem.category) === i) {
           let inventoryId = (inventoryItem.name).replace(/\s+/g, '-').toLowerCase()
           let styleColor = 'black'
+          let disabledState = false
+          let buttonStyle = 'primary'
+          let buttonText = 'Select'
           if (inventoryItem.stocked) {
             styleColor = 'black'
           } else if (!this.props.filterStocked) {
             styleColor = 'red'
+            disabledState = true
           }
-
+          if (this.props.inCart.indexOf(inventoryItem.name) !== -1) {
+            buttonStyle = 'warning'
+            buttonText = 'Unselect'
+          }
           tableBody.push(
             <tr key={inventoryItem.name}>
+              <td>
+                <ButtonToolbar>
+                  <Button
+                    id={inventoryId}
+                    bsStyle={buttonStyle}
+                    onClick={
+                      (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
+                    }
+                    disabled={disabledState}
+                  >
+                    {buttonText}
+                  </Button>
+                </ButtonToolbar>
+              </td>
               <td style={{ color: styleColor }}>
-                <input
-                  id={inventoryId}
-                  type='checkbox'
-                  onChange={
-                                            (event) => this.props.updateInCart(inventoryItem.name, inventoryItem.price)
-                                        }
-                                    />
                 {inventoryItem.name}
               </td>
               <td style={{ color: styleColor }}>${inventoryItem.price}</td>
             </tr>
-                    )
+          )
         }
       })
     }
@@ -64,16 +71,17 @@ export default class TableBody extends Component {
         {tableBody}
         <tr>
           <td><strong>Total</strong></td>
-          <td id='priceTotal'><strong>${this.props.priceTotal}</strong></td>
+          <td span='2' id='priceTotal'><strong>${this.props.priceTotal}</strong></td>
         </tr>
       </tbody>
     )
   }
 }
 TableBody.propTypes = {
-  inventory: PropTypes.object,
+  inventory: PropTypes.array,
   filterStocked: PropTypes.bool,
   searchString: PropTypes.string,
   priceTotal: PropTypes.number,
-  updateInCart: PropTypes.func
+  updateInCart: PropTypes.func,
+  inCart: PropTypes.array
 }

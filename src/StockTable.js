@@ -4,13 +4,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TableBody from './TableBody'
+import {Table} from 'react-bootstrap'
 
 export default class StockTable extends Component {
   render () {
     return (
-      <table>
+      <Table bordered condensed hover>
         <thead>
           <tr>
+            <td><strong>Select</strong></td>
             <td><strong>Name</strong></td>
             <td>Price</td>
           </tr>
@@ -21,16 +23,18 @@ export default class StockTable extends Component {
           searchString={this.props.searchString}
           priceTotal={this.props.priceTotal}
           updateInCart={this.props.updateInCart}
+          inCart={this.props.inCart}
         />
-      </table>
+      </Table>
     )
   }
 }
 
 StockTable.propTypes = {
-  inventory: PropTypes.object,
+  inventory: PropTypes.array,
   filterStocked: PropTypes.bool,
   searchString: PropTypes.string,
   priceTotal: PropTypes.number,
-  updateInCart: PropTypes.func
+  updateInCart: PropTypes.func,
+  inCart: PropTypes.array
 }
