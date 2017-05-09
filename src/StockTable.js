@@ -31,7 +31,7 @@ export default class StockTable extends Component {
 }
 
 StockTable.propTypes = {
-  inventory: PropTypes.object,
+  inventory: PropTypes.array,
   filterStocked: PropTypes.bool,
   searchString: PropTypes.string,
   priceTotal: PropTypes.number,

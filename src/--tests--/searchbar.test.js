@@ -1,25 +1,34 @@
 import React from 'react'
 import SearchBar from '../SearchBar'
-// import { shallow, mount, render } from 'enzyme'
 import { shallow } from 'enzyme'
 
 /* global it describe expect beforeEach jest */
 
 describe('SearchBar', () => {
-  let wrapper
+  let wrapper, mockSearchSting, mockFilterStocked
   beforeEach(() => {
-    const myFakeFunc = jest.fn()
+    mockSearchSting = jest.fn()
+    mockFilterStocked = jest.fn()
     wrapper = shallow(<SearchBar
-      handleSearchString={myFakeFunc}
-      handleFilterStockedToggle={myFakeFunc}
+      handleSearchString={mockSearchSting}
+      handleFilterStockedToggle={mockFilterStocked}
     />)
   })
-
   describe('searchStringBox', () => {
-    it('makes appropraite callback from text input', () => {
-      const event = {target: {value: 'bacon'}}
+    const event = {target: {value: 'bacon'}}
+    it('makes a callback from text input', () => {
       wrapper.find('#searchStringBox').simulate('change', event)
-      expect(myFakeFunc.mock.calls.length).toBe(1)
+      expect(mockSearchSting).toBeCalled()
+    })
+    it('recieves the argument of the text entered', () => {
+      wrapper.find('#searchStringBox').simulate('change', event)
+      expect(mockSearchSting.mock.calls[0][0]).toBe('bacon')
+    })
+  })
+  describe('filterStockedCheckBox', () => {
+    it('makes a callback from onclick', () => {
+      wrapper.find('#filterStockedCheckBox').simulate('click')
+      expect(mockFilterStocked).toBeCalled()
     })
   })
 })
